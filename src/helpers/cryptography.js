@@ -1,13 +1,13 @@
 const bcrypt = require("bcrypt")
 const configurations = require("../configurations/configurations.json")
 
-module.exports = function Cryptography() {
+const Cryptography = () => {
 
-    async function Hash(password) {
+    const Hash = async (password) => {
         return await bcrypt.hash(password, configurations.cryptography.salt)
     }
 
-    async function Verify(password, hash) {
+    const Verify = async (password, hash) => {
         return bcrypt.compare(password, hash)
     }
 
@@ -16,3 +16,5 @@ module.exports = function Cryptography() {
         Verify
     }
 }
+
+module.exports = Cryptography

@@ -1,8 +1,8 @@
 const mysql = require('mysql2/promise');
 
-module.exports = function DatabaseProvider() {
+const DatabaseProvider = () => {
 
-    async function StartDatabase() {
+    const StartDatabase = async () => {
         const configurations = require('../configurations/configurations.json')
 
         let databaseConnection = {}
@@ -21,11 +21,11 @@ module.exports = function DatabaseProvider() {
         return databaseConnection
     }
 
-    async function DropConnection(databaseConnection) {
+    const DropConnection = async (databaseConnection) => {
         databaseConnection.end()
     }
 
-    async function GetData(query) {
+    const GetData = async (query) => {
         const mysqlconnection = await StartDatabase()
 
         let connectionResults = {}
@@ -41,16 +41,17 @@ module.exports = function DatabaseProvider() {
         return connectionResults
     }
 
-    async function InsertData(query) {
-        console.log("inser")
-
+    const InsertData = async (query) => {
         const mysqlconnection = await StartDatabase()
 
         await mysqlconnection.query(query)
         .then(() => {
             DropConnection(mysqlconnection)
         }).catch((error) => {
-            throw error.sqlMessage
+            if(error.sqlMessage.startsWith("Duplicate entry")) {
+                throw "Erro: Dados Duplicados"
+            }
+            throw "Erro: Erro desconhecido"
         })
     }
 
@@ -59,3 +60,5 @@ module.exports = function DatabaseProvider() {
         InsertData
     }
 }
+
+module.exports = DatabaseProvider

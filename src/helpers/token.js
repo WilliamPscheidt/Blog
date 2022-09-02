@@ -1,13 +1,13 @@
 var jwt = require('jsonwebtoken');
 
-module.exports = function Token() {
+const Token = () =>{
 
-    function Generate(data, expires) {
+    const Generate = (data, expires) => {
         const configurations = require("../configurations/configurations.json")
         return jwt.sign({data}, configurations.token.default_key, {expiresIn: expires})
     }
 
-    function Verify(token) {
+    const Verify = (token) => {
         const configurations = require("../configurations/configurations.json")
     
         let funcResponse;
@@ -27,3 +27,5 @@ module.exports = function Token() {
         Verify
     }
 }
+
+module.exports = Token

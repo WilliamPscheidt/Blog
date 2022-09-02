@@ -1,6 +1,8 @@
-module.exports = function CreatePost(req, res) {
+const CreatePost = async (req, res) => {
 
     res.send({
         ok: "ok"
     })
 }
+
+module.exports = CreatePost

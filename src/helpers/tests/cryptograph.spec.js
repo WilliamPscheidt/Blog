@@ -1,6 +1,5 @@
 const Cryptography = require("../cryptography")
 
-
 describe('[Helper] Cryptograph Helper Tests', () => { 
     test('Hash Password', async () => { 
         const result = await Cryptography().Hash("Pass")

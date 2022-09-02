@@ -1,4 +1,7 @@
 {
+    "api": {
+        "token": "zft6%*p6Wqx55K*rLPa0XOkckPgBT$rxldJQ!cKcaWSK8&b%7U"
+    },
     "database": {
         "host": "localhost",
         "user": "root",
