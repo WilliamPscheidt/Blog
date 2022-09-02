@@ -15,7 +15,7 @@ module.exports = function DatabaseProvider() {
         }).then((result) => {
             databaseConnection = result
         }).catch(() => {
-            throw "Error in database"
+            throw "Error in database connection"
         })
     
         return databaseConnection
@@ -25,19 +25,37 @@ module.exports = function DatabaseProvider() {
         databaseConnection.end()
     }
 
-    async function Execute(query) {
+    async function GetData(query) {
         const mysqlconnection = await StartDatabase()
 
         let connectionResults = {}
-        await mysqlconnection.query(query).then((result) => {
+
+        await mysqlconnection.query(query)
+        .then((result) => {
             DropConnection(mysqlconnection)
             connectionResults = result
+        }).catch((error) => {
+            throw error.sqlMessage
         })
 
         return connectionResults
     }
 
+    async function InsertData(query) {
+        console.log("inser")
+
+        const mysqlconnection = await StartDatabase()
+
+        await mysqlconnection.query(query)
+        .then(() => {
+            DropConnection(mysqlconnection)
+        }).catch((error) => {
+            throw error.sqlMessage
+        })
+    }
+
     return {
-        Execute
+        GetData,
+        InsertData
     }
 }
