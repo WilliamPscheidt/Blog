@@ -7,7 +7,7 @@ const Token = () =>{
         return jwt.sign({data}, configurations.token.default_key, {expiresIn: expires})
     }
 
-    const Verify = (token) => {
+    const Verify = async (token) => {
         const configurations = require("../configurations/configurations.json")
     
         let funcResponse;

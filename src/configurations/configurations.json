@@ -14,5 +14,14 @@
     "cryptography": {
         "hash": "tI3o6KfBB*A^#5TNhV6lR#PfIxo0CpVs3MuWob6V03XsP!axD8",
         "salt": 10
+    },
+    "mailer": {
+        "host": "smtp.example.com",
+        "port": "587",
+        "secure": false,
+        "auth": {
+            "email": "email@email.com",
+            "password": "INVALID PASSWORD"
+        }
     }
 }

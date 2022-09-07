@@ -33,7 +33,7 @@ const DatabaseProvider = () => {
         await mysqlconnection.query(query)
         .then((result) => {
             DropConnection(mysqlconnection)
-            connectionResults = result
+            connectionResults = result[0]
         }).catch((error) => {
             throw error.sqlMessage
         })

@@ -8,7 +8,9 @@ const Cryptography = () => {
     }
 
     const Verify = async (password, hash) => {
-        return bcrypt.compare(password, hash)
+        return bcrypt.compare(password, hash).catch((error) => {
+            throw error
+        })
     }
 
     return {
