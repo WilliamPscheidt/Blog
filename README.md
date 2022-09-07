@@ -1,1 +1,1 @@
-Esse projeto está em desenvolvimento.
+API For blogs
